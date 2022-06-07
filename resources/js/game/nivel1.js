@@ -146,7 +146,6 @@ export class nivel1 extends Phaser.Scene{
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     
-    
         //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
         this.stars = this.physics.add.group({
             key: 'star',
@@ -256,10 +255,10 @@ export class nivel1 extends Phaser.Scene{
             
     
             var bomb = this.bombs.create(x, 16, 'bomb');
-            this.bomb.setBounce(1);
-            this.bomb.setCollideWorldBounds(true);
-            this.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-            this.bomb.allowGravity = false;
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false; 
     
         }
     }
@@ -285,10 +284,10 @@ export class nivel1 extends Phaser.Scene{
             var x = (player2.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
     
             var bomb = this.bombs.create(x, 16, 'bomb');
-            this.bomb.setBounce(1);
-            this.bomb.setCollideWorldBounds(true);
-            this.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-            this.bomb.allowGravity = false;
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false
     
         }
     }

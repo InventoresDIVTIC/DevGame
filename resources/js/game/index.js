@@ -2,7 +2,7 @@ require('../bootstrap');
 require('phaser');
 
 import { nivel1 } from "./nivel1.js";
-//import { nivel3 } from "./nivel3.js";
+import { nivel3 } from "./nivel3.js";
 
 
 var config = {
@@ -19,7 +19,7 @@ var config = {
             height: 600
         }
     },
-    scene: [nivel1]
+    scene: [nivel1,nivel3,]
 };
 
 let game = new Phaser.Game(config);
