@@ -3,5 +3,6 @@
     "/game/index.js": "/game/index.js",
     "/game/scenes/nivel1.js": "/game/scenes/nivel1.js",
     "/game/scenes/nivel3.js": "/game/scenes/nivel3.js",
+    "/game/scenes/Level1.js": "/game/scenes/Level1.js",
     "/css/app.css": "/css/app.css"
 }

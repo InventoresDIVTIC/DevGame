@@ -1,7 +1,8 @@
 import 'phaser';
 
 import nivel1  from "./scenes/nivel1";
-// import nivel3  from "./scenes/nivel3";
+import Level1 from './scenes/Level1';
+//import nivel3  from "./scenes/nivel3";
 
 
 var config = {
@@ -19,7 +20,7 @@ var config = {
         }
     },
     scene: [
-        nivel1
+        Level1
     ]
 };
 

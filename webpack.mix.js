@@ -15,6 +15,7 @@ mix.js('resources/js/app.js','public/js')
     .js('resources/game/index.js','public/game')
     .js('resources/game/scenes/nivel1.js','public/game/scenes')
     .js('resources/game/scenes/nivel3.js','public/game/scenes')
+    .js('resources/game/scenes/Level1.js','public/game/scenes')
     .postCss('resources/css/app.css', 
     'public/css',
     [require('tailwindcss')]
