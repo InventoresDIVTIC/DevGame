@@ -12,10 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js','public/js')
-    .js('resources/game/index.js','public/game')
-    .js('resources/game/scenes/nivel1.js','public/game/scenes')
-    .js('resources/game/scenes/nivel3.js','public/game/scenes')
-    .js('resources/game/scenes/Level1.js','public/game/scenes')
+    .js('resources/juego/index.js','public/juego')
+    .js('resources/juego/scenes/nivel1.js','public/juego/scenes')
+    .js('resources/juego/scenes/nivel3.js','public/juego/scenes')
+    .js('resources/juego/scenes/Level1.js','public/juego/scenes')
     .postCss('resources/css/app.css', 
     'public/css',
     [require('tailwindcss')]
