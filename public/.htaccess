@@ -1,4 +1,20 @@
-AddType application/wasm .wasm
+Options +FollowSymLinks
+
+RewriteEngine on
+
+<Files "*.wasm">
+
+    AddType application/wasm .wasm
+
+    AddEncoding br wasm
+
+</Files>
+
+<Files "*.unityweb">
+
+    AddEncoding br unityweb
+
+</Files>
 
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
