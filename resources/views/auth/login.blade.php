@@ -10,7 +10,15 @@
             <img src="{{asset('img/arcade.jpg')}}" alt="Imagen Login Arcade">
         </div>
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
+            {{-- Si esta loggiado dirige al juego --}}
+            @auth
+                <a href="/muro" type="submit"
+                    class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
+                    uppercase font-bold w-full p-3 text-center text-white rounded-lg">Ir al juego</a>
+            @endauth
 
+            {{-- Si no pedira iniciar sesión --}}
+            @guest
             <form method="POST"  action="{{route('login')}}">
                 @csrf
 
@@ -36,10 +44,12 @@
                 <div class="mb-5">
                     <input type="checkbox" name="remember"> <label class=" text-gray-500 text-sm">Mantener mi sesión abierta</label> 
                 </div>
-                <input type="submit" value="Inciar Sesión" 
+                <input type="submit" value="Iniciar Sesión" 
                 class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
                         uppercase font-bold w-full p-3 text-white rounded-lg"/>
             </form>
+            @endguest
+           
         </div>
 
     </div>
