@@ -14,7 +14,10 @@ class RegisterController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request->get('username'));
+
+
+        //Convierte a minusculas, elimina espacios y acentos 
+        $request->request->add(['username'=> Str::slug($request->username)]);
         
         // --Validación--
         $this->validate($request, [
@@ -28,7 +31,7 @@ class RegisterController extends Controller
         // Agrega usuario
         User::create([
             'name'=> $request->name,
-            'username'=> Str::slug($request->username), //Convierte a minusculas, elimina espacios y acentos 
+            'username'=> $request->username, 
             'email'=> $request->email,
             'password'=> Hash::make($request->password) //Hashea password 
         ]);

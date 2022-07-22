@@ -42,4 +42,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts(){
+        //Relacion 1 a muchos
+        return $this->hasMany(Post::class);
+    }
+
+    //Esto crea relacion entre tabla usarios y likes(Relacion 1 a muchos)
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    //almacena seguidores en tabla follower
+    public function followers(){
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function Following(){
+        return $this->belongsToMany(User::class, 'followers',  'follower_id', 'user_id');
+    }
+
+    //Verifica si ya sigue al usuario
+    public function checkFollow(User $user){
+        return $this->followers->contains($user->id);
+    }
+
+    
+
 }

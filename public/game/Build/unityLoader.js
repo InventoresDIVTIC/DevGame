@@ -29,7 +29,7 @@ var container = document.querySelector("#unity-container");
         updateBannerVisibility();
       }
 
-      var buildUrl = "game/Build";
+      var buildUrl = "../game/Build";
       var loaderUrl = buildUrl + "/Game.loader.js";
       var config = {
         dataUrl: buildUrl + "/Game.data",

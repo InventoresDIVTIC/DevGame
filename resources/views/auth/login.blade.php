@@ -10,7 +10,7 @@
             <img src="{{asset('img/arcade.jpg')}}" alt="Imagen Login Arcade">
         </div>
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            {{-- Si esta loggiado dirige al juego --}}
+            {{-- Si Inicio session dirige al juego --}}
             @auth
                 <a href="/muro" type="submit"
                     class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
@@ -21,7 +21,7 @@
             @guest
             <form method="POST"  action="{{route('login')}}">
                 @csrf
-
+                {{-- Muestra  Mensaje de Error --}}
                 @if (session('mensaje'))
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{session('mensaje')}}</p> 
                 @endif
@@ -40,7 +40,7 @@
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                     @enderror
                 </div>
-
+                {{-- Para mantener la session abierta --}}
                 <div class="mb-5">
                     <input type="checkbox" name="remember"> <label class=" text-gray-500 text-sm">Mantener mi sesión abierta</label> 
                 </div>

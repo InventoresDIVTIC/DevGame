@@ -17,11 +17,11 @@ class LoginController extends Controller
         ]);
                                                                 //Mantiene la sesión
         if(!auth()->attempt($request->only('email', 'password'), $request->remember)){
-            //manda mensaje a vista de login
+            //Si las Credenciales para Inicio de Session manda mensaje a vista de login
             return back()->with('mensaje', 'Credenciales Incorrectas');
         }
 
-        //Redireccionamos 
-        return redirect(route('posts.index'));
+        // Si Las Credenciales Fueron Correctas Redireccionamos 
+        return redirect(route('posts.index', auth()->user()->username));
     }
 }

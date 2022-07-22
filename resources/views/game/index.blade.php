@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Index
+    DevGame
 @endsection
 
+@push('styles')
+<link rel="shortcut icon" href="{{asset('game/TemplateData/favicon.ico')}}">
+<link rel="stylesheet" href="{{ asset('game/TemplateData/style.css')}}">
+@endpush
+
+@push('script')
+  <script src="{{asset('game/Build/unityLoader.js')}}" defer></script>
+@endpush
+
 @section('contenido')
-<script src="{{asset('game/Build/unityLoader.js')}}" defer></script>
 <div class="flex justify-center">
   <div class="md:w-3/12 px-5">
     <p class="text-center text-2xl font-black p-5">Controles</p>
