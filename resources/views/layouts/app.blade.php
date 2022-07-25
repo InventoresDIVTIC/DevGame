@@ -26,7 +26,12 @@
                               </svg>
                             Crear
                         </a>
-                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('posts.index', auth()->user()->username)}}">Hola <span class="font-normal">{{auth()->user()->username}}</span></a>
+                        <a class="font-bold uppercase text-gray-600 text-sm flex" href="{{route('posts.index', auth()->user()->username)}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="font-normal">{{auth()->user()->username}}</span>
+                        </a>
                         <form action="{{route('logout')}}" method="POST">
                             @csrf
                             <button type="submit" class="font-bold uppercase text-gray-600 text-sm">Cerrar Sesión</button>

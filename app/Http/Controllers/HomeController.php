@@ -15,9 +15,12 @@ class HomeController extends Controller
 
     public function __invoke(){
         $ids = auth()->user()->following->pluck('id')->toArray();
-        $posts = Post::whereIn('user_id', $ids)->latest()->paginate(20);
+        $postsFollow = Post::whereIn('user_id', $ids)->latest()->paginate(20); //Obtiene las publicaciones de los usuarios que sigues
+        $postsLast = Post::latest()->take(10)->get();
+
+        $posts = $postsFollow->merge($postsLast);
         return view('home', [
-            'posts' => $posts
+            'posts' => $posts 
         ]);
     }
 }
