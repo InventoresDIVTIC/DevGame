@@ -93,7 +93,7 @@
                         @foreach ($post->comentarios as $comentario )
                                 <div class="p-5 border-gray-300 border-b">
                                     <div class="flex items-center bg-slate-50 m-1">
-                                        <img class="object-cover w-14 h-14 rounded-full" src="{{$post->user->imagen ?  asset('perfiles/'. '/' . $post->user->imagen) : asset('img/usuario.svg')}} " alt="Imagen de perfil">
+                                        <img class="object-cover w-14 h-14 rounded-full" src="{{$comentario->user->imagen ?  asset('perfiles/'. '/' . $comentario->user->imagen) : asset('img/usuario.svg')}} " alt="Imagen de perfil">
                                         <a class="font-bold" href="{{route('posts.index', $comentario->user)}}">
                                             {{$comentario->user->username}}
                                         </a>
