@@ -56,6 +56,7 @@ class PerfilController extends Controller
 
         //Redireccionar
         return redirect()->route('posts.index', $usuario->username);
-        
     }
+
+    
 }

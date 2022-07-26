@@ -13,7 +13,8 @@
 </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
-            <div class="container mx-auto flex justify-between items-center">
+            {{-- <div class="container mx-auto flex justify-between items-center"> --}}
+            <div class="container mx-auto flex flex-col md:flex-row justify-between  items-center">
                 <a href="{{route('home')}}" class="text-3xl font-black">DevsGame</a>
 
                 {{-- Si esta autemticado--}}

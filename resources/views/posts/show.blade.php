@@ -42,7 +42,12 @@
                 <p class="font-bold">{{$post->likes()->count()}} <span class="font-normal">Likes</span></p>
             </div>
             <div>
-                <p class="font-bold">{{$post->user->username}}</p>
+                <div class="flex items-center">
+                    <img class="object-cover w-14 h-14 rounded-full" src="{{$post->user->imagen ?  asset('perfiles/'. '/' . $post->user->imagen) : asset('img/usuario.svg')}} " alt="Imagen de perfil">
+                    <a href="{{route('posts.index', $post->user)}}" class="font-bold">{{$post->user->username}}</a>
+                </div>
+                
+                {{-- <p class="font-bold">{{$post->user->username}}</p> --}}
                 <p class="text-sm text-gray-500">{{$post->created_at->diffForHumans()}}</p>
                 <p class="mt-5">{{$post->descripcion}}</p>
             </div>
@@ -87,10 +92,14 @@
                     @if ($post->comentarios->count())
                         @foreach ($post->comentarios as $comentario )
                                 <div class="p-5 border-gray-300 border-b">
-                                    <a class="font-bold" href="{{route('posts.index', $comentario->user)}}">
-                                        {{$comentario->user->username}}
-                                    </a>
-                                    <p>{{$comentario->comentario}}</p>
+                                    <div class="flex items-center bg-slate-50 m-1">
+                                        <img class="object-cover w-14 h-14 rounded-full" src="{{$post->user->imagen ?  asset('perfiles/'. '/' . $post->user->imagen) : asset('img/usuario.svg')}} " alt="Imagen de perfil">
+                                        <a class="font-bold" href="{{route('posts.index', $comentario->user)}}">
+                                            {{$comentario->user->username}}
+                                        </a>
+                                    </div>
+                                   
+                                    <p class="p-3">{{$comentario->comentario}}</p>
                                     <p class="text-sm text-gray-500">{{$comentario->created_at->diffForHumans()}}</p>
                                 </div>
                         @endforeach
