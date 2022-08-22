@@ -12,7 +12,7 @@
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
             {{-- Si Inicio session dirige al juego --}}
             @auth
-                <a href="/muro" type="submit"
+                <a href="{{route('game.index')}}" type="submit"
                     class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
                     uppercase font-bold w-full p-3 text-center text-white rounded-lg">Ir al juego</a>
             @endauth

@@ -58,5 +58,16 @@ class PerfilController extends Controller
         return redirect()->route('posts.index', $usuario->username);
     }
 
+    //Seccion de buscar por nombre de usuario
+    public function buscar(Request $request){
+        $users =  User::select('username','email','imagen')
+                    ->where('username', 'LIKE', "%$request->username%")->get();
+       
+        return view('perfil.buscar', [
+            'users' => $users
+        ]);
+    }
+
+   
     
 }

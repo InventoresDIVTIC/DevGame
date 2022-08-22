@@ -10,6 +10,8 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         @stack('script')
         <script src="{{asset('js/app.js')}}" defer></script>
+
+        @livewireStyles
 </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -51,8 +53,8 @@
         </header>
 
         {{-- Contenido --}}
-        <main class="container mx-auto mt-10">
-            <h2 class="font-black text-center text-3xl mb-10">
+        <main class="container mx-auto mt-5">
+            <h2 class="font-black text-center text-3xl mb-5">
                 @yield('titulo')
             </h2>
             @yield('contenido')
@@ -61,6 +63,6 @@
         <footer class="text-center p-5 font-bold text-gray-600 uppercase">
             DevsGame- Todos los derechos reservados {{ now()->year}}
         </footer>
-     
+        @livewireScripts
     </body>
 </html>

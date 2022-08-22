@@ -52,6 +52,7 @@
                 <p class="mt-5">{{$post->descripcion}}</p>
             </div>
             @auth
+                <livewire:like-post/>
                 @if ($post->user_id === auth()->user()->id)
                     <form action="{{route('posts.destroy', $post)}}" method="POST">
                         @method('DELETE')

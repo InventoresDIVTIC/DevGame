@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    DevGame
+    DevGame: {{$user->username}} 
 @endsection
 
 @push('styles')

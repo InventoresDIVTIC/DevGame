@@ -37,8 +37,13 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
 Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
 
+//buscar perfil
+Route::post('/buscar', [PerfilController::class, 'buscar'])->name('perfil.buscar');
+
+
 //Ruta para el Juego
 Route::get('/game-devgame', [GameController::class, 'index'])->name('game.index');
+Route::get('/game-devgame/user', [GameController::class, 'userData'])->name('game.user');
 
 //Route::get('/muro', [PostController::class,'index'])->name('posts.index');
 Route::get('/{user:username}', [PostController::class,'index'])->name('posts.index');
