@@ -22,8 +22,14 @@ class GameController extends Controller
         ]);
     }
 
+    //toma los datos del usuario para ser mandados al juego
     public function userData(){
-        $user = User::find(auth()->user()->id);
+        // $user = User::find(auth()->user()->id);
+        $user = User::find(1);
         return $user;
+    }
+
+    public function store(Request $request){
+        dd($request);
     }
 }
