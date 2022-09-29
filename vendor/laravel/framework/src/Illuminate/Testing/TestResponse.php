@@ -6,8 +6,8 @@ use ArrayAccess;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\CookieValuePrefix;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -43,7 +43,7 @@ class TestResponse implements ArrayAccess
      *
      * @var \Illuminate\Support\Collection
      */
-    protected $exceptions;
+    public $exceptions;
 
     /**
      * The streamed content of the response.
@@ -189,81 +189,7 @@ class TestResponse implements ArrayAccess
      */
     protected function statusMessageWithDetails($expected, $actual)
     {
-        $lastException = $this->exceptions->last();
-
-        if ($lastException) {
-            return $this->statusMessageWithException($expected, $actual, $lastException);
-        }
-
-        if ($this->baseResponse instanceof RedirectResponse) {
-            $session = $this->baseResponse->getSession();
-
-            if (! is_null($session) && $session->has('errors')) {
-                return $this->statusMessageWithErrors($expected, $actual, $session->get('errors')->all());
-            }
-        }
-
-        if ($this->baseResponse->headers->get('Content-Type') === 'application/json') {
-            $testJson = new AssertableJsonString($this->getContent());
-
-            if (isset($testJson['errors'])) {
-                return $this->statusMessageWithErrors($expected, $actual, $testJson->json());
-            }
-        }
-
         return "Expected response status code [{$expected}] but received {$actual}.";
-    }
-
-    /**
-     * Get an assertion message for a status assertion that has an unexpected exception.
-     *
-     * @param  string|int  $expected
-     * @param  string|int  $actual
-     * @param  \Throwable  $exception
-     * @return string
-     */
-    protected function statusMessageWithException($expected, $actual, $exception)
-    {
-        $message = $exception->getMessage();
-
-        $exception = (string) $exception;
-
-        return <<<EOF
-Expected response status code [$expected] but received $actual.
-
-The following exception occurred during the request:
-
-$exception
-
-----------------------------------------------------------------------------------
-
-$message
-
-EOF;
-    }
-
-    /**
-     * Get an assertion message for a status assertion that contained errors.
-     *
-     * @param  string|int  $expected
-     * @param  string|int  $actual
-     * @param  array  $errors
-     * @return string
-     */
-    protected function statusMessageWithErrors($expected, $actual, $errors)
-    {
-        $errors = $this->baseResponse->headers->get('Content-Type') === 'application/json'
-            ? json_encode($errors, JSON_PRETTY_PRINT)
-            : implode(PHP_EOL, Arr::flatten($errors));
-
-        return <<<EOF
-Expected response status code [$expected] but received $actual.
-
-The following errors occurred during the request:
-
-$errors
-
-EOF;
     }
 
     /**
@@ -813,7 +739,7 @@ EOF;
     /**
      * Assert that the response does not contain the given path.
      *
-     * @param  array  $data
+     * @param  string  $path
      * @return $this
      */
     public function assertJsonMissingPath(string $path)
@@ -1051,6 +977,13 @@ EOF;
             PHPUnit::assertTrue($value(Arr::get($this->original->gatherData(), $key)));
         } elseif ($value instanceof Model) {
             PHPUnit::assertTrue($value->is(Arr::get($this->original->gatherData(), $key)));
+        } elseif ($value instanceof EloquentCollection) {
+            $actual = Arr::get($this->original->gatherData(), $key);
+
+            PHPUnit::assertInstanceOf(EloquentCollection::class, $actual);
+            PHPUnit::assertSameSize($value, $actual);
+
+            $value->each(fn ($item, $index) => PHPUnit::assertTrue($actual->get($index)->is($item)));
         } else {
             PHPUnit::assertEquals($value, Arr::get($this->original->gatherData(), $key));
         }
@@ -1431,7 +1364,13 @@ EOF;
      */
     protected function session()
     {
-        return app('session.store');
+        $session = app('session.store');
+
+        if (! $session->isStarted()) {
+            $session->start();
+        }
+
+        return $session;
     }
 
     /**
@@ -1542,11 +1481,17 @@ EOF;
             PHPUnit::fail('The response is not a streamed response.');
         }
 
-        ob_start();
+        ob_start(function (string $buffer): string {
+            $this->streamedContent .= $buffer;
+
+            return '';
+        });
 
         $this->sendContent();
 
-        return $this->streamedContent = ob_get_clean();
+        ob_end_clean();
+
+        return $this->streamedContent;
     }
 
     /**
