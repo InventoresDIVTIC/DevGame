@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ed8be3f0082b8c123c81105941536af72557ebb6',
+        'reference' => 'b80e8402024ff964860cf4784a685ddb4a0449e0',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -379,7 +379,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ed8be3f0082b8c123c81105941536af72557ebb6',
+            'reference' => 'b80e8402024ff964860cf4784a685ddb4a0449e0',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -533,12 +533,12 @@
             'dev_requirement' => false,
         ),
         'nunomaduro/collision' => array(
-            'pretty_version' => 'v6.3.0',
-            'version' => '6.3.0.0',
+            'pretty_version' => 'v6.3.1',
+            'version' => '6.3.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nunomaduro/collision',
             'aliases' => array(),
-            'reference' => '17f600e2e8872856ff2846243efb74ad4b6da531',
+            'reference' => '0f6349c3ed5dd28467087b08fb59384bb458a22b',
             'dev_requirement' => true,
         ),
         'nunomaduro/termwind' => array(
@@ -718,8 +718,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
