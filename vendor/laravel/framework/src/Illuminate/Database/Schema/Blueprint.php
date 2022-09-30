@@ -1243,7 +1243,7 @@ class Blueprint
     }
 
     /**
-     * Create a new UUID column on the table.
+     * Create a new uuid column on the table.
      *
      * @param  string  $column
      * @return \Illuminate\Database\Schema\ColumnDefinition
@@ -1264,34 +1264,6 @@ class Blueprint
         return $this->addColumnDefinition(new ForeignIdColumnDefinition($this, [
             'type' => 'uuid',
             'name' => $column,
-        ]));
-    }
-
-    /**
-     * Create a new ULID column on the table.
-     *
-     * @param  string  $column
-     * @param  int|null  $length
-     * @return \Illuminate\Database\Schema\ColumnDefinition
-     */
-    public function ulid($column = 'uuid', $length = 26)
-    {
-        return $this->char($column, $length);
-    }
-
-    /**
-     * Create a new ULID column on the table with a foreign key constraint.
-     *
-     * @param  string  $column
-     * @param  int|null  $length
-     * @return \Illuminate\Database\Schema\ForeignIdColumnDefinition
-     */
-    public function foreignUlid($column, $length = 26)
-    {
-        return $this->addColumnDefinition(new ForeignIdColumnDefinition($this, [
-            'type' => 'char',
-            'name' => $column,
-            'length' => $length,
         ]));
     }
 
@@ -1533,17 +1505,6 @@ class Blueprint
     public function rememberToken()
     {
         return $this->string('remember_token', 100)->nullable();
-    }
-
-    /**
-     * Add a comment to the table.
-     *
-     * @param  string  $comment
-     * @return \Illuminate\Support\Fluent
-     */
-    public function comment($comment)
-    {
-        return $this->addCommand('tableComment', compact('comment'));
     }
 
     /**

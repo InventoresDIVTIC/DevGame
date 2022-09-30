@@ -43,13 +43,6 @@ class PendingRequest
     protected $client;
 
     /**
-     * The Guzzle HTTP handler.
-     *
-     * @var callable
-     */
-    protected $handler;
-
-    /**
      * The base URL for the request.
      *
      * @var string
@@ -447,19 +440,6 @@ class PendingRequest
     }
 
     /**
-     * Specify the maximum number of redirects to allow.
-     *
-     * @param  int  $max
-     * @return $this
-     */
-    public function maxRedirects(int $max)
-    {
-        return tap($this, function () use ($max) {
-            $this->options['allow_redirects']['max'] = $max;
-        });
-    }
-
-    /**
      * Indicate that redirects should not be followed.
      *
      * @return $this
@@ -526,15 +506,15 @@ class PendingRequest
      * Specify the number of times the request should be attempted.
      *
      * @param  int  $times
-     * @param  int  $sleepMilliseconds
+     * @param  int  $sleep
      * @param  callable|null  $when
      * @param  bool  $throw
      * @return $this
      */
-    public function retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
+    public function retry(int $times, int $sleep = 0, ?callable $when = null, bool $throw = true)
     {
         $this->tries = $times;
-        $this->retryDelay = $sleepMilliseconds;
+        $this->retryDelay = $sleep;
         $this->retryThrow = $throw;
         $this->retryWhenCallback = $when;
 
@@ -605,17 +585,6 @@ class PendingRequest
     public function throwIf($condition)
     {
         return $condition ? $this->throw() : $this;
-    }
-
-    /**
-     * Throw an exception if a server or client error occurred and the given condition evaluates to false.
-     *
-     * @param  bool  $condition
-     * @return $this
-     */
-    public function throwUnless($condition)
-    {
-        return $this->throwIf(! $condition);
     }
 
     /**
@@ -973,7 +942,9 @@ class PendingRequest
      */
     public function buildClient()
     {
-        return $this->client ?? $this->createClient($this->buildHandlerStack());
+        return $this->requestsReusableClient()
+               ? $this->getReusableClient()
+               : $this->createClient($this->buildHandlerStack());
     }
 
     /**
@@ -1017,7 +988,7 @@ class PendingRequest
      */
     public function buildHandlerStack()
     {
-        return $this->pushHandlers(HandlerStack::create($this->handler));
+        return $this->pushHandlers(HandlerStack::create());
     }
 
     /**
@@ -1283,7 +1254,9 @@ class PendingRequest
      */
     public function setHandler($handler)
     {
-        $this->handler = $handler;
+        $this->client = $this->createClient(
+            $this->pushHandlers(HandlerStack::create($handler))
+        );
 
         return $this;
     }

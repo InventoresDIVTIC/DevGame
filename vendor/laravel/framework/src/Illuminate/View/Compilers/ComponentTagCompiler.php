@@ -112,15 +112,7 @@ class ComponentTagCompiler
                         \s+
                         (?:
                             (?:
-                                @(?:class)(\( (?: (?>[^()]+) | (?-1) )* \))
-                            )
-                            |
-                            (?:
                                 \{\{\s*\\\$attributes(?:[^}]+?)?\s*\}\}
-                            )
-                            |
-                            (?:
-                                (\:\\\$)(\w+)
                             )
                             |
                             (?:
@@ -172,10 +164,6 @@ class ComponentTagCompiler
                     (?:
                         \s+
                         (?:
-                            (?:
-                                @(?:class)(\( (?: (?>[^()]+) | (?-1) )* \))
-                            )
-                            |
                             (?:
                                 \{\{\s*\\\$attributes(?:[^}]+?)?\s*\}\}
                             )
@@ -438,16 +426,12 @@ class ComponentTagCompiler
             <
                 \s*
                 x[\-\:]slot
-                (?:\:(?<inlineName>\w+(?:-\w+)*))?
+                (?:\:(?<inlineName>\w+))?
                 (?:\s+(:?)name=(?<name>(\"[^\"]+\"|\\\'[^\\\']+\\\'|[^\s>]+)))?
                 (?<attributes>
                     (?:
                         \s+
                         (?:
-                            (?:
-                                @(?:class)(\( (?: (?>[^()]+) | (?-1) )* \))
-                            )
-                            |
                             (?:
                                 \{\{\s*\\\$attributes(?:[^}]+?)?\s*\}\}
                             )
@@ -476,10 +460,6 @@ class ComponentTagCompiler
         $value = preg_replace_callback($pattern, function ($matches) {
             $name = $this->stripQuotes($matches['inlineName'] ?: $matches['name']);
 
-            if (Str::contains($name, '-') && ! empty($matches['inlineName'])) {
-                $name = Str::camel($name);
-            }
-
             if ($matches[2] !== ':') {
                 $name = "'{$name}'";
             }
@@ -502,9 +482,8 @@ class ComponentTagCompiler
      */
     protected function getAttributesFromAttributeString(string $attributeString)
     {
-        $attributeString = $this->parseShortAttributeSyntax($attributeString);
         $attributeString = $this->parseAttributeBag($attributeString);
-        $attributeString = $this->parseComponentTagClassStatements($attributeString);
+
         $attributeString = $this->parseBindAttributes($attributeString);
 
         $pattern = '/
@@ -556,21 +535,6 @@ class ComponentTagCompiler
     }
 
     /**
-     * Parses a short attribute syntax like :$foo into a fully-qualified syntax like :foo="$foo".
-     *
-     * @param  string  $value
-     * @return string
-     */
-    protected function parseShortAttributeSyntax(string $value)
-    {
-        $pattern = "/\:\\\$(\w+)/x";
-
-        return preg_replace_callback($pattern, function (array $matches) {
-            return ":{$matches[1]}=\"\${$matches[1]}\"";
-        }, $value);
-    }
-
-    /**
      * Parse the attribute bag in a given attribute string into its fully-qualified syntax.
      *
      * @param  string  $attributeString
@@ -584,27 +548,6 @@ class ComponentTagCompiler
         /x";
 
         return preg_replace($pattern, ' :attributes="$1"', $attributeString);
-    }
-
-    /**
-     * Parse @class statements in a given attribute string into their fully-qualified syntax.
-     *
-     * @param  string  $attributeString
-     * @return string
-     */
-    protected function parseComponentTagClassStatements(string $attributeString)
-    {
-        return preg_replace_callback(
-             '/@(class)(\( ( (?>[^()]+) | (?2) )* \))/x', function ($match) {
-                 if ($match[1] === 'class') {
-                     $match[2] = str_replace('"', "'", $match[2]);
-
-                     return ":class=\"\Illuminate\Support\Arr::toCssClasses{$match[2]}\"";
-                 }
-
-                 return $match[0];
-             }, $attributeString
-        );
     }
 
     /**
