@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/Dev-Request', ApiController::class);
+// Route::resource('/Dev-Request', ApiController::class);
 
-// Route::get('/Dev-Request', [ApiController::class, 'index']);
-// Route::post('/Dev-Request', [ApiController::class, 'store']);
+Route::get('/Dev-Request', [ApiController::class, 'index']);
+Route::post('/Dev-Request', [ApiController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
