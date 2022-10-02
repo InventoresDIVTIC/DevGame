@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\ApiController;
+
+use App\Http\Controllers\ApiControll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resource('/Dev-Request', ApiController::class);
 
-Route::get('/Dev-Request', [ApiController::class, 'index']);
-Route::post('/Dev-Request', [ApiController::class, 'store']);
+Route::get('/Dev-Request', [ApiControll::class, 'index']);
+Route::post('/Dev-Request', [ApiControll::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\levels;
+use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class ApiControll extends Controller
 {
     public function index(){
         //return User::find(auth()->user()->id);
