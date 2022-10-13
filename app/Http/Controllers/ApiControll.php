@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class ApiControll extends Controller
 {
     public function index(){
-        //return User::find(auth()->user()->id);
-        return User::find(1);
+        return User::find(auth()->user()->id);
+        //return User::find(1);
     }
 
     public function store(Request $request){

@@ -43,7 +43,7 @@ Route::post('/buscar', [PerfilController::class, 'buscar'])->name('perfil.buscar
 
 //Ruta para el Juego
 Route::get('/game-devgame', [GameController::class, 'index'])->name('game.index');
-Route::get('/game-devgame/user', [GameController::class, 'userData'])->name('game.user');
+//Route::get('/game-devgame/user', [GameController::class, 'userData'])->name('game.user');
 Route::post('/game-devgame/register',[GameController::class,'store'])->name('game.store');
 
 //Route::get('/muro', [PostController::class,'index'])->name('posts.index');
