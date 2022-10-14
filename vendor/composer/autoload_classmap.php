@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\ApiControll' => $baseDir . '/app/Http/Controllers/ApiControll.php',
     'App\\Http\\Controllers\\ComentarioController' => $baseDir . '/app/Http/Controllers/ComentarioController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FollowerController' => $baseDir . '/app/Http/Controllers/FollowerController.php',
@@ -20,7 +21,6 @@ return array(
     'App\\Http\\Controllers\\PerfilController' => $baseDir . '/app/Http/Controllers/PerfilController.php',
     'App\\Http\\Controllers\\PostController' => $baseDir . '/app/Http/Controllers/PostController.php',
     'App\\Http\\Controllers\\RegisterController' => $baseDir . '/app/Http/Controllers/RegisterController.php',
-    'App\\Http\\Controllers\\api\\ApiController' => $baseDir . '/app/Http/Controllers/api/ApiController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Livewire\\LikePost' => $baseDir . '/app/Http/Livewire/LikePost.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

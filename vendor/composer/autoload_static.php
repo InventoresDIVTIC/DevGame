@@ -518,6 +518,7 @@ class ComposerStaticInitbd8bdde58974fa18ed85ce87c40887e2
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ApiControll' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiControll.php',
         'App\\Http\\Controllers\\ComentarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/ComentarioController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FollowerController' => __DIR__ . '/../..' . '/app/Http/Controllers/FollowerController.php',
@@ -530,7 +531,6 @@ class ComposerStaticInitbd8bdde58974fa18ed85ce87c40887e2
         'App\\Http\\Controllers\\PerfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilController.php',
         'App\\Http\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostController.php',
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
-        'App\\Http\\Controllers\\api\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/api/ApiController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Livewire\\LikePost' => __DIR__ . '/../..' . '/app/Http/Livewire/LikePost.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
