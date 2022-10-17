@@ -12,10 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js','public/js')
-    .js('resources/juego/index.js','public/juego')
-    .js('resources/juego/scenes/nivel1.js','public/juego/scenes')
-    .js('resources/juego/scenes/nivel3.js','public/juego/scenes')
-    .js('resources/juego/scenes/Level1.js','public/juego/scenes')
     .postCss('resources/css/app.css', 
     'public/css',
     [require('tailwindcss')]

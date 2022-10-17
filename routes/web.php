@@ -45,6 +45,7 @@ Route::post('/buscar', [PerfilController::class, 'buscar'])->name('perfil.buscar
 //Ruta para el Juego
 Route::get('/game-devgame', [GameController::class, 'index'])->name('game.index');
 Route::get('/game-devgame/user', [GameController::class, 'userData'])->name('game.user');
+Route::get('/game-devgame/davo', [GameController::class, 'davoData']);
 
 //Route::get('/muro', [PostController::class,'index'])->name('posts.index');
 Route::get('/{user:username}', [PostController::class,'index'])->name('posts.index');
@@ -61,8 +62,8 @@ Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->na
 Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
 
 //Likes
-Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
-Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
+// Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
+// Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
 
 
 

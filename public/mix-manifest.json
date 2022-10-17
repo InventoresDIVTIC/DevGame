@@ -1,8 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/juego/index.js": "/juego/index.js",
-    "/juego/scenes/nivel1.js": "/juego/scenes/nivel1.js",
-    "/juego/scenes/nivel3.js": "/juego/scenes/nivel3.js",
-    "/juego/scenes/Level1.js": "/juego/scenes/Level1.js",
     "/css/app.css": "/css/app.css"
 }
