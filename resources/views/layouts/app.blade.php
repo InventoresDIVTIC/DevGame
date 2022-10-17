@@ -10,7 +10,7 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         @stack('script')
         <script src="{{asset('js/app.js')}}" defer></script>
-        @livewireStyles
+        @livewireStyles()
 </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -64,6 +64,6 @@
         </footer>
 
         
-        @livewireScripts
+        @livewireScripts()
     </body>
 </html>
