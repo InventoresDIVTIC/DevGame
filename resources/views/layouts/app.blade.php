@@ -10,7 +10,9 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         @stack('script')
         <script src="{{asset('js/app.js')}}" defer></script>
+        
         @livewireStyles()
+        
 </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -63,7 +65,7 @@
             DevsGame- Todos los derechos reservados {{ now()->year}}
         </footer>
 
-        
-        @livewireScripts()
+        @livewireStyles()
+
     </body>
 </html>
