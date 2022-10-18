@@ -10,8 +10,9 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         @stack('script')
         <script src="{{asset('js/app.js')}}" defer></script>
-        @livewireStyles()
-        @livewireScripts()
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+        @livewireScripts
 </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow">
@@ -63,5 +64,7 @@
         <footer class="text-center p-5 font-bold text-gray-600 uppercase">
             DevsGame- Todos los derechos reservados {{ now()->year}}
         </footer>
+
+        @livewireScripts
     </body>
 </html>
