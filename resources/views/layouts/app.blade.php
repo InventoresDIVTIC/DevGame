@@ -11,7 +11,6 @@
         @stack('script')
         <script src="{{asset('js/app.js')}}" defer></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-        {{-- "livewire/livewire": "^2.10" --}}
         @livewireScripts
 </head>
     <body class="bg-gray-100">
@@ -64,7 +63,7 @@
         <footer class="text-center p-5 font-bold text-gray-600 uppercase">
             DevsGame- Todos los derechos reservados {{ now()->year}}
         </footer>
-
+        
         @livewireScripts
     </body>
 </html>
