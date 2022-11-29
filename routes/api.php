@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 //register
 Route::post('/Dev-Request', [ApiControll::class, 'store']);
+Route::get('/Dev-Request/Questions', [ApiControll::class, 'show']);
 
 //Esto protege las url si es que no se tiene un usuario en login
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/Dev-Request', [ApiControll::class, 'user']);
+    
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

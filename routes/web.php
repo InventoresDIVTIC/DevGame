@@ -11,6 +11,7 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -56,6 +57,20 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+
+//Mostrar preguntas
+Route::get('{user:username}/questions', [QuestionController::class, 'index'])->name('question.index');
+
+//Registrar preguntas
+Route::get('{user:username}/questions/register', [QuestionController::class, 'store'])->name('question.store');
+Route::post('{user:username}/questions/register', [QuestionController::class, 'store'])->name('question.store');
+
+//Editar Preguntas
+Route::get('{user:username}/questions/edit/{question}', [QuestionController::class, 'edit'])->name('question.edit');
+Route::post('{user:username}/questions/edit/{question}', [QuestionController::class, 'edit'])->name('question.edit');
+
+//Eliminar preguntas
+Route::delete('{user:username}/questions/{question}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
 //Siguiendo usuarios
 Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
