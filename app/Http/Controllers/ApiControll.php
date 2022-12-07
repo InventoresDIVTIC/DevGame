@@ -15,7 +15,8 @@ class ApiControll extends Controller
 
     //Obtiene el usuario loggeado
     public function user(){
-        $user = User::find(auth()->user()->id);
+        // $user = User::find(auth()->user()->id);
+        $user = User::find(1);
         return response($user, 201);
     }
 
