@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'https://devgame.inventores.org/',
+    'asset_url' => null,
 
     /*
     |--------------------------------------------------------------------------
