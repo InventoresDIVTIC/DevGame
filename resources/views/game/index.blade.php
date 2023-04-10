@@ -93,7 +93,7 @@
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4">{{$time->user_id}}</td>
+                      <td class="px-6 py-4">{{$time->time}}</td>
                       <td class="px-2 py-4">{{$time->extraPoints}}</td>
                       <td class="px-2 py-4">{{$time->errors}}</td>
                   </tr>
