@@ -39,4 +39,5 @@ class ApiControll extends Controller
         $questions = Question::all();
         return response($questions, 201);
     }
+
 }

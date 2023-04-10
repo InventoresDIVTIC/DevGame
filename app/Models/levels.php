@@ -17,4 +17,9 @@ class levels extends Model
         'extraPoints',
         'time'
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

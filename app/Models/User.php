@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,6 +46,11 @@ class User extends Authenticatable
     public function posts(){
         //Relacion 1 a muchos
         return $this->hasMany(Post::class);
+    }
+
+    public function levels(){
+        //Relacion 1 a muchos
+        return $this->hasMany(levels::class);
     }
 
     //Esto crea relacion entre tabla usarios y likes(Relacion 1 a muchos)

@@ -48,6 +48,7 @@ Route::get('/game-devgame', [GameController::class, 'index'])->name('game.index'
 Route::get('/game-devgame/user', [GameController::class, 'userData'])->name('game.user');
 Route::get('/game-devgame/davo', [GameController::class, 'davoData']);
 
+
 //Route::get('/muro', [PostController::class,'index'])->name('posts.index');
 Route::get('/{user:username}', [PostController::class,'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
