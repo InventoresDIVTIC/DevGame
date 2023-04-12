@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\levels;
 use App\Models\User;
-use App\Models\Post;
-use Illuminate\Database\DBAL\TimestampType;
-use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
@@ -30,7 +27,7 @@ class GameController extends Controller
         if($max->count() % 2 ==0){
            $posicion = $max->count() / 2; 
         }else{
-            $posicion = $max->count() + 1 / 2; 
+            $posicion = ($max->count() + 1) / 2; 
         }
 
         $porcentaje = 0;
@@ -44,12 +41,12 @@ class GameController extends Controller
             $puntos_extras += $data->extraPoints;
         }
 
-        $porcentaje_muertes = ($porcentaje > 0) ? $porcentaje / $datas->count(): 0;
+        $porcentaje_muertes = ($porcentaje > 0) ? $porcentaje / $datas->count() : 0;
         
         
         return view('game.index',[
             'user' => $user,
-            'porcentaje' => $porcentaje_muertes,
+            'porcentaje' => number_format($porcentaje_muertes, 2),
             'muertes' => $muertes,
             'puntos_extras' => $puntos_extras,
             'veces' => $veces,
