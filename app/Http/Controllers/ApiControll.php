@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class ApiControll extends Controller
 {
 
-    //Obtiene el usuario loggeado
+    //Obtiene el usuario que inicio session 
     public function user(){
         // $user = User::find(auth()->user()->id);
         $user = User::find(1);
