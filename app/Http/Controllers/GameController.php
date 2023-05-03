@@ -35,10 +35,13 @@ class GameController extends Controller
         $puntos_extras = 0;
         $veces = ($datas->count())? $datas->count() : 0;
 
-        foreach ($datas as $data){
-            $porcentaje += $data->errors;
-            $muertes += $data->deads;
-            $puntos_extras += $data->extraPoints;
+
+        if($datas->count()){
+            foreach ($datas as $data){
+                $porcentaje += $data->errors;
+                $muertes += $data->deads;
+                $puntos_extras += $data->extraPoints;
+            }
         }
 
         $porcentaje_muertes = ($porcentaje > 0) ? $porcentaje / $datas->count() : 0;
