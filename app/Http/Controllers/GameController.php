@@ -57,7 +57,7 @@ class GameController extends Controller
             'veces' => $veces,
             'media' => $media,
             'mejorTiempo' => $min,
-            'times' => $times,
+            'times' => ($times->count()) ? $times : 0,
         ]);
     }
 
