@@ -62,7 +62,7 @@
               </tr>
               <tr>
                 <td>Tu mejor tiempo:</td>
-                @if ($mejorTiempo->time != null)
+                @if ($mejorTiempo != null)
                   <td>{{$mejorTiempo->time}} minutos</td>
                 @else
                     <td>0 minutos</td>
