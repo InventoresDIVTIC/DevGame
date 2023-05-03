@@ -62,7 +62,12 @@
               </tr>
               <tr>
                 <td>Tu mejor tiempo:</td>
-                <td>{{$mejorTiempo->time}} minutos</td>
+                @if ($mejorTiempo->time != null)
+                  <td>{{$mejorTiempo->time}} minutos</td>
+                @else
+                    <td>0 minutos</td>
+                @endif
+                
               </tr>
           </table>
           <div class="overflow-hidden rounded-lg shadow-lg">
