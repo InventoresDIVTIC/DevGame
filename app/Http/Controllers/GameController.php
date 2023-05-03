@@ -56,8 +56,8 @@ class GameController extends Controller
             'puntos_extras' => $puntos_extras,
             'veces' => $veces,
             'media' => $media,
-            'mejorTiempo' => ($min->count()) ? $min : 0,
-            'times' => ($times->count()) ? $times : 0,
+            'mejorTiempo' => ($min != null) ? $min : 0,
+            'times' => ($times != null) ? $times : 0
         ]);
     }
 
