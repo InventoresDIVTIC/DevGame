@@ -33,10 +33,12 @@ class GameController extends Controller
         $porcentaje = 0;
         $muertes = 0;
         $puntos_extras = 0;
+        $media = 0;
         $veces = ($datas->count())? $datas->count() : 0;
 
 
         if($datas->count()){
+            $media = $max[$posicion]->time;
             foreach ($datas as $data){
                 $porcentaje += $data->errors;
                 $muertes += $data->deads;
@@ -53,7 +55,7 @@ class GameController extends Controller
             'muertes' => $muertes,
             'puntos_extras' => $puntos_extras,
             'veces' => $veces,
-            'media' => $max[$posicion]->time,
+            'media' => $media,
             'mejorTiempo' => $min,
             'times' => $times,
         ]);
